@@ -1,0 +1,21 @@
+{
+  "name": "30daysofswa-testing",
+  "version": "1.0.0",
+  "description": "## What are we doing?",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fearlessly-dev/30daysofSWA-testing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fearlessly-dev/30daysofSWA-testing/issues"
+  },
+  "homepage": "https://github.com/fearlessly-dev/30daysofSWA-testing#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.22.1"
+  }
+}
