@@ -216,3 +216,94 @@ jobs:
 ```
 
 We can see that this sets up a GitHub Action that installs dependencies and required browsers, then runs the test - and uploads the report as an artifact to your GitHub repo that is _retained for 30 days_.
+
+Let's see this in action by committing the file. If you check the [Actions tab](https://github.com/fearlessly-dev/30daysofSWA-testing/actions) on your GitHub repo, you should see the workflow triggered by the most recent commit. When it completes you should see something like this:
+
+![Test Action](playwright-action.png)
+
+Note: this may take a non-trivial amount of time on the initial tests given the number of browsers and tests run. Later on, we can customize the configuration to be more specific to our needs.
+
+
+## 8. Viewing Actions-Generated Reports
+
+**Notice the Artifacts section** - if you click on the `playwright-report` it should download a trace file (`playwright-report.zip`) to your local development devices. Want to see what this contains? 
+
+Download and unzip it - it should contain a simple HTML file that you can open in a local browser, to see the same kind of report we saw earlier.
+
+That's what [Trace Viewer](https://playwright.dev/docs/1.21/trace-viewer#viewing-the-trace) is for.
+
+Try running this command in the folder where you downloaded that report.
+
+```
+npx playwright show-trace playwright-report.zip
+```
+
+## 9. Let's Customize The Script 
+
+Move the existing script to [examples.spec.js.orig](./tests/example.spec.js.orig) then create a new [examples.spec.js](./tests/example.spec.js) - and let's copy over the [First Test](https://playwright.dev/docs/1.21/intro#first-test) from the Playwright docs.
+
+Customize it to navigate to your testing site (in my case `https://www.azurestaticwebapps.dev/`) and test using a valid selector. In my case, since both #30DaysOfSWA and Playwright.dev use the [Docusaurus](https://docusaurus.io) site generator, I can reuse the same test and just match it up to my title of `#30DaysOfSWA`
+
+```
+// @ts-check
+const { test, expect } = require('@playwright/test');
+
+test('basic test', async ({ page }) => {
+  await page.goto('// @ts-check
+const { test, expect } = require('@playwright/test');
+
+test('basic test', async ({ page }) => {
+  await page.goto('https://www.azurestaticwebapps.dev/');
+  const title = page.locator('.navbar__inner .navbar__title');
+  await expect(title).toHaveText('#30DaysOfSWA');
+  const title = page.locator('.navbar__inner .navbar__title');
+  await expect(title).toHaveText('#30DaysOfSWA');
+});
+```
+
+Let's run it locally! But wait, we'll make one tiny tweak.
+
+We'll go into the `playwright.config.js` file and change the `trace` property value from `on-first-retry` to `on`. What this does is turn on [Trace Viewer](https://playwright.dev/docs/1.21/trace-viewer) during the test run, giving us an incredibly more detailed trace log.
+
+Just like before, let's run the test - and then look at the report.
+
+```
+npx playwright test
+npx playwright show-report
+```
+
+## The Joys Of Trace Logs
+
+Runs just like before - but wait, the report looks a bit different does it not?
+
+> The HTML Report
+
+Note that now we have just a single test running on all three browsers, and we get the same status and timing information.
+
+![My Report](my-report.png)
+
+Dive into one of those tests, and now we see something different - a _trace_ screenshot that seems to have more detail! Let's click on it!
+
+![My Report Action](my-report-detail.png)
+
+Behold the power of Trace Viewer. This tool provides detailed information for profiling the performance, seeing screenshots and snapshots (before/after test action) to help you debug and audit your app better. 
+
+![My report Trace](my-report-trace.png)
+
+Want to learn more about Trace Viewer? [Read this article on dev.to](https://dev.to/azure/004-tool-talk-hello-trace-viewer-2a61) and here's a handy visual guide. You can find a hi-res downloadable version [here](https://nitya.github.io/learn-playwright/004-trace-viewer/) that walks you through the many features.
+![Trace Viewer](https://res.cloudinary.com/practicaldev/image/fetch/s--JXYYHJPk--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zt5g56kea37unl7mt5vz.png)
+
+
+> CONGRATULATIONS! 
+
+You just setup a Playwright testing harness for testing your deployed Static Web App. Commit these changes to see the trace files show up in your artifacts.
+
+> EXERCISE
+
+Your turn. Study the [original](/tests/example.spec.js) test spec and see if you can understand how different test actions are created. Try adding a new test to your existing script and see how that works.
+
+Feeling motivated? Try using [codegen](https://playwright.dev/docs/1.21/codegen) to have Playwright auto-generate tests for you based simply on your walkthrough of the default user experience on your website.
+
+Now, we can start playing with the scripts to customize our test workflows more.
+
+
