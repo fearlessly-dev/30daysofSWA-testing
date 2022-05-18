@@ -230,13 +230,6 @@ Note: this may take a non-trivial amount of time on the initial tests given the 
 
 Download and unzip it - it should contain a simple HTML file that you can open in a local browser, to see the same kind of report we saw earlier.
 
-That's what [Trace Viewer](https://playwright.dev/docs/1.21/trace-viewer#viewing-the-trace) is for.
-
-Try running this command in the folder where you downloaded that report.
-
-```
-npx playwright show-trace playwright-report.zip
-```
 
 ## 9. Let's Customize The Script 
 
