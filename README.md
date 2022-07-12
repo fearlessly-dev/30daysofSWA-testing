@@ -1,4 +1,4 @@
-# Testing #30DaysOfSWA with Playwright
+# Testing #30DaysOfSWA with Playwright Actions
 
 ## 1. What are we doing?
 
