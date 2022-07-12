@@ -1,5 +1,7 @@
 # Testing #30DaysOfSWA with Playwright Actions
 
+[![Playwright Tests](https://github.com/fearlessly-dev/30daysofSWA-testing/actions/workflows/playwright.yml/badge.svg)](https://github.com/fearlessly-dev/30daysofSWA-testing/actions/workflows/playwright.yml)
+
 ## 1. What are we doing?
 
 The final objective is to setup automated tests to support end-to-end testing of the deployed #30DaysOfSWA website at https://aka.ms/30DaysOfPWA
