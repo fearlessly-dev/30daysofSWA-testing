@@ -32,7 +32,7 @@ const config = {
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['html'],
-    ['json', { outputFolder: 'playwright-report', outputFile: 'report.json' }]
+    ['json', { outputFile: 'report.json' }]
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -98,7 +98,7 @@ const config = {
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
-  // outputDir: 'test-results/',
+  outputDir: 'pw-reports/',
 
   /* Run your local dev server before starting the tests */
   // webServer: {
