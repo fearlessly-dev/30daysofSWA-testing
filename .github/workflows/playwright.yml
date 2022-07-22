@@ -24,11 +24,9 @@ jobs:
       run: npx playwright test
     - name: Upload HTML report as Artifact
       uses: actions/upload-artifact@v2
-      env:
-        report_name: ${GITHUB_RUN_ID}-${GITHUB_RUN_NUMBER}
       if: always()
       with:
-        name: pw-report
+        name: run.id
         path: playwright-report/
         
   storeReports:
