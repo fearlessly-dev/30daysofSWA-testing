@@ -26,8 +26,8 @@ jobs:
       uses: actions/upload-artifact@v2
       if: always()
       with:
-        name: run.id
-        path: playwright-report/
+        name: test-run
+        path: pw-reports/
         
   storeReports:
     name: Store reports
