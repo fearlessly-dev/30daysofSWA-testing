@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ main ]
     
-env:
-  reportName: ${GITHUB_RUN_ID}-${GITHUB_RUN_NUMBER}
-    
 jobs:
 
   test:
@@ -27,9 +24,11 @@ jobs:
       run: npx playwright test
     - name: Upload HTML report as Artifact
       uses: actions/upload-artifact@v2
+      env:
+        report_name: ${GITHUB_RUN_ID}-${GITHUB_RUN_NUMBER}
       if: always()
       with:
-        name: ${{ env.reportName }}
+        name: pw-report
         path: playwright-report/
         
   storeReports:
