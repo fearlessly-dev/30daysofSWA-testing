@@ -27,7 +27,7 @@ jobs:
       if: always()
       with: 
         name: pw-reports
-        path: pw-reports/
+        path: pw-report/
         
   storeReports:
     name: Store reports
