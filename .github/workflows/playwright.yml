@@ -25,9 +25,9 @@ jobs:
     - name: Upload HTML report as Artifact
       uses: actions/upload-artifact@v2
       if: always()
-      with:
-        name: test-run
-        path: pw-reports/
+      with: 
+        name: pw-reports
+        path: playwright-report/
         
   storeReports:
     name: Store reports
@@ -43,7 +43,6 @@ jobs:
       with:
         external_repository: fearlessly-dev/playwright.reports
         publish_branch: gh-pages
-        path: docs/
         personal_token: ${{ secrets.PERSONAL_TOKEN }}
         publish_dir: ${{steps.download.outputs.download-path}}
         keep_files: true
