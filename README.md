@@ -1,4 +1,4 @@
-# Testing #30DaysOfSWA with Playwright Actions
+# Testing #30DaysOfSWA with Playwright Actions 
 
 [![Playwright Tests](https://github.com/fearlessly-dev/30daysofSWA-testing/actions/workflows/playwright.yml/badge.svg)](https://github.com/fearlessly-dev/30daysofSWA-testing/actions/workflows/playwright.yml)
 
